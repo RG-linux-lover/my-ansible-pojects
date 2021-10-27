@@ -1,0 +1,32 @@
+version: '3'
+services:
+ controller:
+  image: ritiklinux/ansible:v1-centos8.4
+  container_name: controller       
+  ports: 
+  - "81:80"
+  networks:
+   ansible:
+    ipv4_address: 172.18.250.10
+ hosta:
+  image: ritiklinux/ansible:v1-centos8.4
+  container_name: hosta
+  ports:
+  - "82:80"
+  networks:
+   ansible:
+    ipv4_address: 172.18.250.11
+ hostb:
+  image: ritiklinux/ansible:v1-centos8.4
+  container_name: hostb
+  ports:
+  - "83:80"
+  networks:
+   ansible:
+    ipv4_address: 172.18.250.12
+networks:
+ ansible:
+  ipam:
+   driver: default
+   config:
+   - subnet: 172.18.250.0/24
